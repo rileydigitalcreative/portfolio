@@ -75,9 +75,9 @@ Thank you for taking the time to explore my work!
 
 I’m always open to connecting with people in design, marketing, and technology and learning about new opportunities.
 
-- **Portfolio:** [Add your live portfolio URL]
-- **LinkedIn:** [Add your LinkedIn URL]
-- **Email:** [Add your preferred contact email]
+- **Portfolio:** www.linkedin.com/in/riley-hammond-miamiuniversity
+- **LinkedIn:** www.linkedin.com/in/riley-hammond-miamiuniversity
+- **Email:** riley.digital.creative@gmail.com
 
 ---
 
