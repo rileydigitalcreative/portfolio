@@ -77,14 +77,38 @@ import conceptMoodboard from "@/assets/case-studies/step-inside-a-computer/conce
 import conceptMoodboardTwo from "@/assets/case-studies/step-inside-a-computer/concept-moodboard-2.jpg";
 import lofiAnnotatedWireframes from "@/assets/case-studies/step-inside-a-computer/lofi-annotated-wireframes.jpg";
 import lowfiHome from "@/assets/case-studies/step-inside-a-computer/lowfi-home.png";
+import lofiAbout from "@/assets/case-studies/step-inside-a-computer/lofi-about.jpg";
 import lofiTicketing from "@/assets/case-studies/step-inside-a-computer/lofi-ticketing.jpg";
 import highfiAnnotatedWireframes from "@/assets/case-studies/step-inside-a-computer/highfi-annotated-wireframes.jpg";
+import highfiHome from "@/assets/case-studies/step-inside-a-computer/highfi-homescreen.jpg";
 import highfiAbout from "@/assets/case-studies/step-inside-a-computer/highfi-about.jpg";
 import highfiTicketing from "@/assets/case-studies/step-inside-a-computer/highfi-ticketing.png";
 import walkthroughLevel1 from "@/assets/case-studies/step-inside-a-computer/walkthrough-level-1.jpg";
 import walkthroughLevel2 from "@/assets/case-studies/step-inside-a-computer/walkthrough-level-2.jpg";
 import appWorkflow from "@/assets/case-studies/step-inside-a-computer/app-workflow.jpg";
 import siteMap from "@/assets/case-studies/step-inside-a-computer/site-map.jpg";
+import heroPrototypeOne from "@/assets/case-studies/step-inside-a-computer/hero-image-ideas/Hero1.jpg";
+import heroPrototypeTwo from "@/assets/case-studies/step-inside-a-computer/hero-image-ideas/Hero2.jpg";
+import heroPrototypeThree from "@/assets/case-studies/step-inside-a-computer/hero-image-ideas/Hero3.jpg";
+import chatgptImageOne from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/chatgpt1.png";
+import chatgptImageTwo from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/chatgpt2.png";
+import geminiImageOne from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/gemini1.jpeg";
+import geminiImageTwo from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/gemini2.jpeg";
+import geminiImageThree from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/gemini3.jpeg";
+import dremniaImageOne from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/dremnia1.jpeg";
+import dremniaImageTwo from "@/assets/case-studies/step-inside-a-computer/ai-journey-images/dremnia2.jpeg";
+import recipeMockupOne from "@/assets/case-studies/hands-free-recipe/Mockup1.png";
+import recipeMockupTwo from "@/assets/case-studies/hands-free-recipe/Mockup2.png";
+import recipeInstructionsInterface from "@/assets/case-studies/hands-free-recipe/recipe-instructions-interface.png";
+import recipeSelectionInterface from "@/assets/case-studies/hands-free-recipe/recipe-selection-interface.png";
+import gestureScroll from "@/assets/case-studies/hands-free-recipe/gestures/scroll.jpg";
+import gestureSelect from "@/assets/case-studies/hands-free-recipe/gestures/select.jpg";
+import gesturePreviousStep from "@/assets/case-studies/hands-free-recipe/gestures/previous-step.jpg";
+import gestureMarkComplete from "@/assets/case-studies/hands-free-recipe/gestures/mark-complete.jpg";
+import gestureNextStep from "@/assets/case-studies/hands-free-recipe/gestures/next-step.jpg";
+import gestureRecipeSelect from "@/assets/case-studies/hands-free-recipe/gestures/recipe-select.jpg";
+import testingNextStep from "@/assets/case-studies/hands-free-recipe/testing/next-step.jpg";
+import testingPreviousStep from "@/assets/case-studies/hands-free-recipe/testing/previous-step.jpg";
 
 export const toolGroups = [
   { title: "Web & Development", tools: ["HTML", "CSS", "JavaScript", "GitHub", "Lovable", "Expo Go", "Squarespace"] },
@@ -105,6 +129,7 @@ export type Asset = string | { label: string; src?: string };
 
 export type Concept = {
   title: string;
+  subtitle?: string;
   summary: string;
   audience: string;
   impact: string;
@@ -116,6 +141,15 @@ export type Concept = {
 };
 
 export type StepInsideSection = {
+  persona: {
+    family: { name: string; age: number; description: string }[];
+    location: string;
+    goalsAndMotivations: string[];
+    visitJourney: { phase: string; details: string[] }[];
+    preferences: { category: string; details: string[] }[];
+    challenges: string[];
+    context: { category: string; detail: string }[];
+  };
   concepts: Concept[];
   walkthroughs: { title: string; image: string; caption: string }[];
   aiExplorations: { platform: string; image?: string; evaluation: string }[];
@@ -132,6 +166,33 @@ export type StepInsideSection = {
   highFidelity: { label: string; image?: string; caption?: string }[];
   highFidelityOverview?: string;
   prototypeUrl?: string;
+};
+
+export type HandsFreeSection = {
+  prototypeUrl: string;
+  accessibilityPotential: string;
+  mockups: { label: string; image: string; caption: string }[];
+  testingPhotos: { label: string; image: string; caption: string }[];
+  finalInterfaces: { label: string; image: string; caption: string }[];
+  finalGestures: { gesture: string; action: string; image: string }[];
+};
+
+export type MobileAppPreview = {
+  title: string;
+  subtitle: string;
+  prompt: string;
+  backgroundImage: string;
+  assignmentHighlights: string[];
+  places: {
+    id: string;
+    name: string;
+    type: string;
+    address: string;
+    rating: number;
+    cost: string;
+    image: string;
+    website?: string;
+  }[];
 };
 
 export type AppEntry = { title: string; assignment: string; description: string; tech: string[]; learned: string };
@@ -156,6 +217,8 @@ export type CaseStudy = {
   apps?: AppEntry[];
   reflection: string;
   stepInside?: StepInsideSection;
+  handsFree?: HandsFreeSection;
+  mobileAppPreview?: MobileAppPreview;
 };
 
 const TBA = "[TO ADD]";
@@ -175,30 +238,112 @@ export const caseStudies: CaseStudy[] = [
     goals: `${TBA} — project goals and intended audience.`,
     role: TBA,
     contributions: ["Concept moodboard", "Low- and high-fidelity wireframes in Figma", "App workflow", "Sitemap and information architecture"],
-    tools: ["Figma"],
+    tools: ["Figma, Canva"],
     chapterLabel: "From concept to interface",
     stepInside: {
+      persona: {
+        family: [
+          { name: "Mark Johnson", age: 45, description: "Software engineer" },
+          { name: "Lisa Johnson", age: 42, description: "Elementary school teacher" },
+          { name: "Emma Johnson", age: 12, description: "Student who enjoys reading and storytelling" },
+          { name: "Ryan Johnson", age: 8, description: "Student who enjoys hands-on activities and games" },
+        ],
+        location: "Cincinnati, Ohio",
+        goalsAndMotivations: [
+          "Have an engaging, educational, and fun museum experience.",
+          "Explore Cincinnati’s history, science, or cultural heritage in a memorable way.",
+          "Discover exhibits with interactive, multimedia, or personalized elements.",
+          "Create lasting family memories and share learning with their children.",
+        ],
+        visitJourney: [
+          {
+            phase: "Before",
+            details: [
+              "Researches exhibit highlights online.",
+              "May download a museum app or look for activity guides.",
+              "Plans the day around specific exhibits or interactive stations.",
+            ],
+          },
+          {
+            phase: "During",
+            details: [
+              "Uses smartphones to take photos, look up related content, or access digital guides.",
+              "Prefers exhibits that combine storytelling with GUIs, augmented reality, or multimedia.",
+              "Engages with hands-on displays, quizzes, and interactive games.",
+              "Keeps children involved by encouraging participation and exploration.",
+            ],
+          },
+          {
+            phase: "After",
+            details: [
+              "Shares photos and experiences via social media.",
+              "Looks for follow-up resources or activities to extend learning.",
+            ],
+          },
+        ],
+        preferences: [
+          {
+            category: "Design & usability",
+            details: [
+              "Clear signage and intuitive pathways.",
+              "Accessible exhibits with minimal language barriers.",
+              "Digital interfaces children can understand and navigate.",
+            ],
+          },
+          {
+            category: "Content & interaction",
+            details: [
+              "Story-driven exhibits blending history, science, or culture.",
+              "Interactive kiosks, AR/VR experiences, and tactile elements.",
+              "Family participation through quizzes, scavenger hunts, or storytelling.",
+            ],
+          },
+          {
+            category: "Technology",
+            details: [
+              "Seamless integration of technology with physical exhibits.",
+              "App features such as exhibit maps, quizzes, or personalized tours.",
+              "Privacy and data security, especially for children.",
+            ],
+          },
+        ],
+        challenges: [
+          "Waiting in long lines or crowded areas.",
+          "Understanding or navigating complex exhibits.",
+          "Exhibits with minimal interaction or outdated digital interfaces.",
+          "Feeling overwhelmed by too much information or poorly organized displays.",
+          "Limited opportunities for children to engage actively.",
+        ],
+        context: [
+          { category: "Visit timing", detail: "Primarily weekends, school holidays, or special event days." },
+          { category: "Duration", detail: "Typically spends 2–3 hours at the museum." },
+          { category: "Group dynamics", detail: "Mostly family with young children; sometimes with grandparents or friends." },
+          { category: "Visit style", detail: "A mix of structured activities and free exploration." },
+        ],
+      },
       concepts: [
         {
           title: "Concept One",
+          subtitle: "Futuristic, Immersive, Intruiging",
           summary: "A guided exhibit experience that introduces how a computer works through a physical, visitor-led journey.",
-          audience: TBA,
-          impact: TBA,
-          designLanguage: "Exploratory, educational, and immersive.",
-          fontAndColor: TBA,
-          pros: TBA,
-          considerations: TBA,
+          audience: "Families with older childrren, teens, and adults who are interested in technology and understanding how computers work.",
+          impact: "Visitors should leave with a new understanding of a previously hidden world inside their computer and how they are connected to it.",
+          designLanguage: "The design language is dark, structured, and technology-based. The code, grids, and circuits create a complex digital system.",
+          fontAndColor: "Architype Ballmer is used for its digital character, while Tomorrow is used as the secondary font for a clean, legible look. The range of blues in the palette simulates technology, and the black creates mystery.",
+          pros: "Futuristic and immersive, appeals to visitors interested in technology, and it creates a shopisticaed experience.",
+          considerations: "Could feel intimidating, dark and technical imagery may be less appealing to children, and dark spaces can be harder to see (accessibility).",
           image: conceptMoodboard,
         },
         {
           title: "Concept Two",
+          subtitle: "Retro, Vibrant, Energetic",
           summary: "A second direction for translating the computer’s internal systems into an approachable interactive experience.",
-          audience: TBA,
-          impact: TBA,
-          designLanguage: "Clear, playful, and systems-oriented.",
-          fontAndColor: TBA,
-          pros: TBA,
-          considerations: TBA,
+          audience: "Families with younger children and students who are drawn to playful, hands-on experiences. Suited for visitors with no prior knowledge of technology.",
+          impact: "The exhibit should spark curiosity through its exploratory and playful nature. Bright colors and interactive elements help draw children into the tech world.",
+          designLanguage: "The design language is colorful and retro, with pixel graphics and neon lighting. It should feel playful and welcoming for everyone. ",
+          fontAndColor: "Retro Pix is used to create a nostalgic connection to early computers. Deep black, hot pink, electric purple, and teal create vibrance and further develop the playful, retro theme.",
+          pros: "Engaging for younger audiences, makes technology approachable, welcoming and inviting, and it has a retro and nostalgic vibe.",
+          considerations: "Bright colors can become overwhelming, pixel font brings about legibility issues, and the retro theme could feel more like an arcade than an education experience.",
           image: conceptMoodboardTwo,
         },
       ],
@@ -206,29 +351,55 @@ export const caseStudies: CaseStudy[] = [
         {
           title: "Level 1 exhibit walkthrough",
           image: walkthroughLevel1,
-          caption: "The first level maps the visitor’s path through the exhibit and its introductory tasks.",
+          caption: "Level 1 exhibit map. The map and its annotations show the planned visitor progression and interactions for this level.",
         },
         {
           title: "Level 2 exhibit walkthrough",
           image: walkthroughLevel2,
-          caption: "The second level continues the exhibit journey with the next set of interactive tasks.",
+          caption: "Level 2 exhibit map. The map and its annotations continue the planned visitor progression and interactions.",
         },
       ],
       aiExplorations: [
         {
-          platform: TBA,
-          image: heroImage,
-          evaluation: TBA,
+          platform: "ChatGPT",
+          image: chatgptImageOne,
+          evaluation: "Crisp, Detailed, and On-brand",
         },
         {
-          platform: TBA,
-          evaluation: TBA,
+          platform: "ChatGPT",
+          image: chatgptImageTwo,
+          evaluation: "Crisp, Detailed, and On-brand",
+        },
+        {
+          platform: "Gemini",
+          image: geminiImageOne,
+          evaluation: "Dull, Bland, and Uninspiring",
+        },
+        {
+          platform: "Gemini",
+          image: geminiImageTwo,
+          evaluation: "Dull, Bland, and Uninspiring",
+        },
+        {
+          platform: "Gemini",
+          image: geminiImageThree,
+          evaluation: "Dull, Bland, and Uninspiring",
+        },
+        {
+          platform: "Dremnia",
+          image: dremniaImageOne,
+          evaluation: "Creative, Medium-quality, and Dark",
+        },
+        {
+          platform: "Dremnia",
+          image: dremniaImageTwo,
+          evaluation: "Creative, Medium-quality, and Dark",
         },
       ],
       heroPrototypes: [
-        { label: "Hero prototype 1", caption: TBA },
-        { label: "Hero prototype 2", caption: TBA },
-        { label: "Hero prototype 3", caption: TBA },
+        { label: "Hero prototype 1", image: heroPrototypeOne },
+        { label: "Hero prototype 2", image: heroPrototypeTwo },
+        { label: "Hero prototype 3", image: heroPrototypeThree },
       ],
       informationArchitecture: {
         sitemap: siteMap,
@@ -238,12 +409,12 @@ export const caseStudies: CaseStudy[] = [
       },
       lowFidelity: [
         { label: "Home", image: lowfiHome },
-        { label: "About" },
+        { label: "About", image: lofiAbout },
         { label: "Ticketing", image: lofiTicketing },
       ],
       lowFidelityOverview: lofiAnnotatedWireframes,
       highFidelity: [
-        { label: "Home" },
+        { label: "Home", image: highfiHome },
         { label: "About", image: highfiAbout },
         { label: "Ticketing", image: highfiTicketing },
       ],
@@ -270,28 +441,74 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "hands-free-recipe-navigator",
     title: "Hands-Free Recipe Navigator",
-    type: "Mobile · Emerging Technology",
-    status: "To confirm",
+    type: "Interaction Design · UX/UI · Prototyping",
+    status: "In Progress",
     featured: true,
-    summary: "A CoLab mobile interaction project exploring hand detection so cooks can move through a recipe without touching their screen.",
-    categories: ["Mobile app development", "Emerging technology", "Hand-detection interactions", "Accessibility", "Text-to-speech"],
-    facts: [{ k: "Type", v: "Mobile interaction project" }, { k: "Context", v: "CoLab" }, { k: "Year", v: TBA }],
-    problem: "Following a recipe while cooking is awkward: hands are messy or busy, and touching a phone or tablet interrupts the work.",
-    goals: `${TBA} — intended users and project goals.`,
-    role: TBA,
-    contributions: [TBA],
-    tools: [TBA],
-    chapterLabel: "Features — implemented vs. planned",
-    chapters: [
-      { title: "Hand detection & gesture controls", status: "To confirm", body: "Gestures detected by the camera control the app instead of touch." },
-      { title: "Scrolling through recipe steps", status: "To confirm", body: "Move forward and back between steps hands-free." },
-      { title: "Marking steps complete", status: "To confirm", body: "Check off steps as you finish them." },
-      { title: "Text-to-speech", status: "To confirm", body: "Steps can be read aloud so the cook doesn’t need to look at the screen." },
-      { title: "App workflow & interface design", assets: ["Workflow diagram", "Interface screens"] },
-      { title: "Technical implementation", body: `${TBA} — only details you confirm.` },
-      { title: "Testing, challenges & future improvements", body: TBA },
+    summary: "A gesture-controlled cookbook prototype exploring how people can navigate recipes hands-free through camera-based hand recognition and audio feedback.",
+    categories: ["Interaction design", "UX/UI", "Prototyping", "Gesture-based interaction", "Audio feedback"],
+    facts: [{ k: "Project type", v: "Interaction Design · UX/UI · Prototyping" }, { k: "Context", v: "CoLab / Collaborative course project" }, { k: "Year", v: "2026" }],
+    problem: "Cooking often means working with messy hands while trying to follow instructions on a laptop or other device. Repeatedly touching a screen to scroll, find an ingredient, or advance to the next step can interrupt the process.",
+    goals: "Hands-Free Recipe Navigator explores an alternative: a cookbook interface that uses hand gestures and audio feedback to help users navigate recipes without physically touching their computer. Developed as a collaborative CoLab micro-interaction project, the prototype combines interaction design, camera-based hand recognition, and recipe browsing to explore a more natural way to follow digital instructions.",
+    role: "Team project. I focused on visual design, wireframing, documentation, and presenting the project, while collaborating with one teammate on coding and technical implementation.",
+    contributions: [
+      "Created visual concepts, website mockups, and wireframes.",
+      "Contributed to interface design and visual content.",
+      "Collaborated with one teammate on coding and technical implementation.",
+      "Documented the design process, feedback, decisions, and iterations.",
+      "Helped present the project and explain its outcomes.",
     ],
-    reflection: `${TBA} — how user needs shaped design and technology decisions.`,
+    tools: ["Python", "Claude", "WordPress API", "Node Fetch", "Cheerio", "Figma"],
+    chapterLabel: "Hands-Free Recipe Navigator — project phases",
+    chapters: [],
+    handsFree: {
+      prototypeUrl: "https://hands-free-recipe-navigator.onrender.com/",
+      accessibilityPotential: "Hands-free interaction may offer an alternative input method for people who find traditional keyboard, mouse, or touchscreen interaction difficult. It may also be useful when a person's hands are occupied during a task such as cooking. This is an opportunity to explore, not a proven or formally tested accessibility outcome.",
+      mockups: [
+        {
+          label: "Variation One — Inline Checklist",
+          image: recipeMockupOne,
+          caption: "This alternative layout checks off recipe instructions directly on the page, keeping the instructions together in one continuous view.",
+        },
+        {
+          label: "Variation Two — Flashcard-Style Instructions",
+          image: recipeMockupTwo,
+          caption: "This alternative layout groups instructions into simplified sections organized by heading for a more focused, step-by-step presentation.",
+        },
+      ],
+      testingPhotos: [
+        {
+          label: "Prototype check-in — next-step gesture",
+          image: testingNextStep,
+          caption: "A class prototype check-in documented the forward gesture used to move to the next recipe step.",
+        },
+        {
+          label: "Prototype check-in — previous-step gesture",
+          image: testingPreviousStep,
+          caption: "A class prototype check-in documented the backward gesture used to return to a previous recipe step.",
+        },
+      ],
+      finalInterfaces: [
+        {
+          label: "Recipe selection",
+          image: recipeSelectionInterface,
+          caption: "The recipe-selection interface lets the user choose a recipe to follow.",
+        },
+        {
+          label: "Recipe instructions",
+          image: recipeInstructionsInterface,
+          caption: "The recipe-instructions interface presents the recipe steps for hands-free navigation.",
+        },
+      ],
+      finalGestures: [
+        { gesture: "Fist", action: "Select a recipe.", image: gestureRecipeSelect },
+        { gesture: "Point forward", action: "Move to the next recipe step.", image: gestureNextStep },
+        { gesture: "Point backward", action: "Move to the previous recipe step.", image: gesturePreviousStep },
+        { gesture: "Thumbs-up", action: "Mark the current step complete and advance.", image: gestureMarkComplete },
+        { gesture: "Palm", action: "Start or stop audio instructions.", image: gestureSelect },
+        { gesture: "Pinch", action: "Scroll through the website hands-free.", image: gestureScroll },
+      ],
+    },
+    reflection: "This project showed me that designing a micro-interaction involves more than assigning an action to a gesture. The interaction needs to be understandable to the user, recognizable by the system, and reliable enough to feel intentional.\n\nOne of our biggest challenges was distinguishing deliberate navigation gestures from ordinary movements. Through feedback and iteration, we learned the importance of clear gesture mappings, useful system feedback, and testing interactions in realistic contexts.\n\nThe project also made me consider the accessibility potential of alternative input methods. Hands-free navigation could be useful for people who find traditional input devices difficult to use, as well as people whose hands are occupied during a task. At the same time, gestures are not universally interpreted in the same way, and gesture-based controls may create barriers for some users. Further research and testing with people with different access needs would be necessary to understand where this approach is genuinely helpful.\n\nIf I continued developing the project, I would improve gesture recognition and intentionality, make the gesture guide easier to read, expand recipe and navigation options, and test the experience with a wider range of users in realistic cooking scenarios.\n\nMy biggest takeaway was that successful interaction design depends on understanding people, communicating system behavior clearly, and refining ideas based on feedback. This project let me contribute to visual design, wireframing, documentation, presentation, and collaborative development while exploring how emerging technology can support everyday experiences.",
   },
   {
     slug: "butterfield-farm-market",
@@ -330,20 +547,65 @@ export const caseStudies: CaseStudy[] = [
     type: "Mobile · Coursework Collection",
     status: "In Progress",
     featured: false,
-    summary: "A curated, growing collection of the strongest apps from my mobile app development class.",
+    summary: "A growing collection of mobile apps built for class. Miami Activities is a guide to places around Oxford, Ohio, presented as a scrollable list.",
     categories: ["Mobile apps", "Coding", "Interaction"],
     facts: [{ k: "Type", v: "Curated collection" }, { k: "Context", v: "Mobile app development course" }, { k: "Year", v: "2026" }],
-    problem: "Each entry starts from a class assignment.",
-    goals: "Show range and growth across the semester.",
-    role: "Designer and developer",
-    contributions: ["Designed and built each app"],
-    tools: [TBA],
+    problem: "Finding places to visit around Miami University in Oxford, Ohio.",
+    goals: "Present local places in a browsable mobile list with location details, photos, cost, and ratings.",
+    role: "Built as an individual class app.",
+    contributions: ["Created a data-driven place list", "Used FlatList to render and scroll through entries", "Added conditional labels for highly rated places"],
+    tools: ["Expo SDK 57", "React Native", "FlatList", "expo-font"],
     chapterLabel: "Selected apps",
     chapters: [],
     apps: [
-      { title: "[App 1 — TO ADD]", assignment: TBA, description: TBA, tech: [TBA], learned: TBA },
-      { title: "[App 2 — TO ADD]", assignment: TBA, description: TBA, tech: [TBA], learned: TBA },
+      {
+        title: "Miami Activities",
+        assignment: "Create a non-tabbed mobile app in Expo and React Native with remote imagery, a screen font, array-driven content, and a conditional expression.",
+        description: "A scrollable guide to restaurants, parks, and other places around Oxford, Ohio.",
+        tech: ["Expo SDK 57", "React Native", "FlatList", "expo-font"],
+        learned: "Organizing place information in an array and rendering it in a scrollable list with rating-based labels.",
+      },
+      {
+        title: "[App 2 — title to add]",
+        assignment: "[Assignment details to add]",
+        description: "[App overview to add]",
+        tech: ["[Tools and technologies to add]"],
+        learned: "[What I learned to add]",
+      },
+      {
+        title: "[App 3 — title to add]",
+        assignment: "[Assignment details to add]",
+        description: "[App overview to add]",
+        tech: ["[Tools and technologies to add]"],
+        learned: "[What I learned to add]",
+      },
     ],
+    mobileAppPreview: {
+      title: "Miami University",
+      subtitle: "Oxford, Ohio",
+      prompt: "Where Will You Go Today?",
+      backgroundImage: "https://i.pinimg.com/1200x/d4/4a/39/d44a397ce09a0212196917c849d63d20.jpg",
+      assignmentHighlights: [
+        "Non-tabbed Expo and React Native app",
+        "Remote images and Google Fonts",
+        "Array-driven place list",
+        "Conditional highly-rated labels",
+      ],
+      places: [
+        { id: "1", name: "Hueston Woods", type: "Restaurant", address: "6301 Park Office Road", rating: 4.5, cost: "$$", image: "https://dam.assets.ohio.gov/image/upload/ohio.org/uploads/068eq00000pep6YAAQ.jpg", website: "https://www.huestonwoodslodge.com/" },
+        { id: "2", name: "Brick Street", type: "Bar", address: "36 E High Street", rating: 3.5, cost: "$", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDNO9n33JrUOvOYEMhr5kxO2zQOlkpFJHdNanM1TqLhZJAqQYmC1lIPPc&s=10", website: "https://brickstreetbar.com/about/" },
+        { id: "3", name: "Ramen Hachi", type: "Restaurant", address: "17 W Church Street", rating: 4.6, cost: "$$", image: "https://ramenhachi.com/menu/Yuzu%20shio-enhanced.png", website: "https://www.ramenhachi.com" },
+        { id: "4", name: "Insomnia Cookies", type: "Restaurant", address: "33 E High Street", rating: 3.9, cost: "$$", image: "https://hips.hearstapps.com/hmg-prod/images/img-8479-jpg-68f13c1348587.jpg?crop=0.609xw:0.812xh;0.199xw,0.00907xh&resize=640:*", website: "https://insomniacookies.com" },
+        { id: "5", name: "Butterfield Farms", type: "Farm & Market", address: "400 Trenton Road", rating: 5, cost: "$", image: "https://dam.assets.ohio.gov/image/upload/q_auto/ohio.org/uploads/068t0000006Q5ujAAC.jpg", website: "https://www.facebook.com/p/Butterfields-Farm-Market-100075926226836/" },
+        { id: "6", name: "SoHi", type: "Restaurant", address: "17 E High Street", rating: 4.4, cost: "$$", image: "https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/97b2cba5-26c3-41f5-a304-93b09930490e.jpg", website: "https://www.sohisandwich.com/" },
+        { id: "7", name: "Peffer Park", type: "Park", address: "4346 Millville Oxford Road", rating: 4.6, cost: "$", image: "https://enjoyoxford.org/wp-content/uploads/2024/10/Peffer-Park-Gazebo.png", website: "https://www.oxfordareatrails.org/visit-the-trails" },
+        { id: "8", name: "Bagel & Deli", type: "Restaurant", address: "119 E High Street", rating: 4.6, cost: "$", image: "http://bagelanddeli.com/uploads/1/3/7/0/13702275/editor/crunchandmunch_1.jpg?1559765225", website: "https://www.bagelanddeli.com" },
+        { id: "9", name: "Little India", type: "Restaurant", address: "431 S Locust Street", rating: 4.8, cost: "$$", image: "https://enjoyoxford.org/wp-content/uploads/2024/02/Little-India.png", website: "https://enjoyoxford.org/restaurant/little-india/" },
+        { id: "10", name: "Chop Bento", type: "Restaurant", address: "19 W High Street", rating: 4.9, cost: "$$", image: "https://website-cdn.menusifu.com/wp-content/uploads/chopbento.com/2026/08/yswx_20260820_c32278445cdf042bd8f1679984c573cc1.jpg", website: "https://www.chopbento.com" },
+        { id: "11", name: "Chocolate Euphoria", type: "Crepe Place", address: "19 W High Street", rating: 4.7, cost: "$$", image: "https://img.cdn4dd.com/cdn-cgi/image/fit=cover,width=600,height=400,format=auto,quality=80/https://doordash-static.s3.amazonaws.com/media/store/header/77d0c114-9996-45d0-9ae7-3fd48a77ec7d.jpg" },
+        { id: "12", name: "RedLife Coffee", type: "Restaurant", address: "22 No College Avenue", rating: 4.2, cost: "$$", image: "https://enjoyoxford.org/wp-content/uploads/2024/09/RedLife-Coffee.png", website: "https://redlifecoffee.com" },
+      ],
+    },
     reflection: "This collection will grow as the semester continues.",
   },
 ];
